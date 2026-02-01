@@ -4,7 +4,7 @@ const { Item ,ItemSalesSummary} = require("../models");
 const {createSalesRecord} = require("./salesRecordsController");
 const {createNotice} = require('./noticeController.js')
 const {loadSettings} = require('./appSettingsConroller.js');
-const { data } = require("react-router-dom");
+
 
 
 const createItem = async (req, res) => {

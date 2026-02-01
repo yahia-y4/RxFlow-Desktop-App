@@ -6,6 +6,7 @@ const server = express();
 const cors = require('cors');
 server.use(cors());
 server.use(express.json());
+const port = process.env.PORT || 4000; 
 
 const {createAppSettings_file} = require('./controllers/appSettingsConroller.js')
 
@@ -26,6 +27,10 @@ async function sequelizeSync() {
     console.log("All models were synchronized successfully.");
 }
 // sequelizeSync();
+server.listen(port, async () => {
+    console.log(`Server is running on port ${port}`);
+    // await createAppSettings_file();
+});
 
 module.exports = server;
   
