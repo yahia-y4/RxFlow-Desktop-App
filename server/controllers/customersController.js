@@ -214,7 +214,7 @@ const ReceivePayment = async (req, res) => {
       throw new Error("customer not found");
     }
     if (_customer.debts < amount) {
-      throw new Error("can not receive payment becuase debts < amount");
+      throw new Error(" المبلغ المطلوب استلامه اكبر من المبلغ المدين به الزبون");
     }
     await _customer.update(
       {

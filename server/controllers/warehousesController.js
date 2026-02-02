@@ -121,7 +121,7 @@ const sendPayment = async (req, res) => {
         }
 
         if(currentWarehouse.payable_amount < payable_amount_send){
-            throw new Error("Not enough payable_amount");
+            throw new Error(" المبلغ المطلوب ارساله اكبر من المبلغ المستحق للمورد");
         }
         await warehouse.update(
             { payable_amount: currentWarehouse.payable_amount - payable_amount_send },
