@@ -149,6 +149,7 @@ const delItem = async (req, res) => {
     await Item.update(
       {
         isDeleted: true,
+        quantity:0
       },
       { where: { id: itemId, userId } }
     );

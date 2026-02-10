@@ -31,7 +31,8 @@ const lowSellingBySales = async (req, res) => {
         const best_selling = await ItemSalesSummary.findAll({
             where: {
                 userId,
-                sales: { [Op.lte]: appSettingsData.Drug_Statistics_Settings.Average_Sales }
+                sales: { [Op.lte]: appSettingsData.Drug_Statistics_Settings.Average_Sales  },
+                quantity:{[Op.gt]:0}
 
             },
             include: [{
