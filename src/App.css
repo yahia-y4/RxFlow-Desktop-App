@@ -1,21 +1,18 @@
-.App{
-height: 100vh;
+.App {
+    height: 100vh;
     width: 100%;
     background-color: #0D1427;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-
-color: #ffffff;
-
-   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
 
 }
-
-.pages-space{
+.pages-space {
     padding-top: 10px;
     width: 100%;
     height: 100%;
-    
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

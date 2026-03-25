@@ -1,14 +1,17 @@
+import type { ReactNode  } from "react";
+import "./PageLayout.css";
+import PageControlButsLayout from "../PageControlButsLayout/PageControlButsLayout";
 
-
-import type { ReactElement } from "react"
-import "./PageLayout.css"
-
-export default function PageLayout({title,children}:{title:string,children:ReactElement}){
-return(
+type Props = {
+  children?: ReactNode ;
+  controlButs?: ReactNode;
+};
+export default function PageLayout({ children, controlButs }: Props) {
+  return (
     <div className="PageLayout">
-
-        <h1 className="PageLayout-title">{title}</h1>
-        <div className="PageLayout-content">{children}</div> 
+     {controlButs && ( <PageControlButsLayout>{<>{controlButs}</>}</PageControlButsLayout>)}
+    
+      <div className="PageLayout-content">{children}</div>
     </div>
-)
+  );
 }
