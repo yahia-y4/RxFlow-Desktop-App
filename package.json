@@ -1,5 +1,5 @@
 {
-  "name": "rxflow-desktop-app",
+  "name": "RxFlow",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -10,11 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.9",
+    "@mui/material": "^7.3.9",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-router-dom": "^7.13.2",
     "sequelize": "^6.37.7",
     "sqlite3": "^5.0.2"
   },
