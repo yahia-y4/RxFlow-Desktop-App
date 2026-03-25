@@ -6,5 +6,25 @@
     border-radius: 15px;
     display: flex;
    margin-top: 10px;
+   direction: rtl;
+
+}
+
+.top-icons-div{
+   
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-right: 10px;
+    
+  
+}
+
+.top-icon-link{
+    text-decoration: none;
+    color: #ffffff;
+ 
 
 }

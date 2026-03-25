@@ -1,15 +1,18 @@
 import "./App.css";
 import NavBar from "./components/NavBar/Navbar";
-import StoragePage from "./modules/storage/StoragePage/StoragePage";
+import { RouteDefine } from "./routes/RouteDefinitions";
+import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <div className="App">
       <NavBar />
       <div className="pages-space">
-       <StoragePage/>
+        <Routes>
+          {RouteDefine.map((onRoute, i) => (
+            <Route key={i} path={onRoute.path} element={onRoute.element} />
+          ))}
+        </Routes>
       </div>
-     
-
     </div>
   );
 }
