@@ -1,12 +1,3 @@
 
 
-.ItemsList{
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-   direction: rtl;
-    gap: 50px;
-        border: 1px solid #ffffff4f;
-}
+

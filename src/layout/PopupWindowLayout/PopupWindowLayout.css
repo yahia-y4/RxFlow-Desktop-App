@@ -1,3 +1,6 @@
 .PopupWindowLayout{
     background-color: var(--PopupWindowColor);
+    border: 1px solid var(--borderColor);
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px #0000003f;
 }

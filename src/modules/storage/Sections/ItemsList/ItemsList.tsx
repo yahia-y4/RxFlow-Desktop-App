@@ -1,14 +1,10 @@
 
 
 import "./ItemsList.css"
-
+import PopupWindowLayout from "../../../../layout/PopupWindowLayout/PopupWindowLayout"
 export default function ItemsList(){
     return(
-        <div className="ItemsList">
-              
-      
-          
-       
-        </div>
+      <PopupWindowLayout w="95%" h="100%">
+      </PopupWindowLayout>
     )
 }
