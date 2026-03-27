@@ -6,6 +6,7 @@
     --PopupWindowColor:#09142F;
 }
 
+
 .App {
     height: 100vh;
     width: 100%;
@@ -14,6 +15,7 @@
     flex-direction: column;
     align-items: center;
     color: var(--textColor);
+    font-family: 'Segoe UI', sans-serif;
 
 }
 .pages-space {

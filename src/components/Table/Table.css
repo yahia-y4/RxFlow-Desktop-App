@@ -1,0 +1,33 @@
+.table-div{
+  width: 100%;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  border: #ddd 1px solid;
+  direction: rtl;
+}
+
+thead th {
+  padding: 0px;
+  text-align: center;
+  background-color: blueviolet;
+  position: sticky;
+}
+
+th, td {
+  padding: 0px;
+  text-align: center;
+  border-bottom: 1px solid #ddd; 
+  border-left: 1px solid #ddd; 
+}
+
+th:last-child,
+td:last-child {
+  border-left: none;
+}
+
+tr:hover{
+    background-color: rgba(127, 255, 212, 0.507);
+}
