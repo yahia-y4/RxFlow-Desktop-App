@@ -1,21 +1,20 @@
 .NavBar{
     width: 95%;
     height: 50px;
-    border: 1px #ffffff4f solid;
-    background-color: #09142F;
+    border: 1px var(--borderColor) solid;
+    background-color: var(--PopupWindowColor);
     border-radius: 15px;
     display: flex;
+    
    margin-top: 10px;
    direction: rtl;
 
 }
 
 .top-icons-div{
-   
     width: 30%;
     height: 100%;
     display: flex;
-    align-items: center;
     gap: 20px;
     padding-right: 10px;
     
@@ -24,7 +23,9 @@
 
 .top-icon-link{
     text-decoration: none;
-    color: #ffffff;
- 
+    color: var(--textColor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
