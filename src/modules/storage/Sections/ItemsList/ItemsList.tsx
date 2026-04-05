@@ -2,6 +2,7 @@ import "./ItemsList.css";
 import PopupWindowLayout from "../../../../layout/PopupWindowLayout/PopupWindowLayout";
 import Table from "../../../../components/Table/Table";
 import type { Item } from "../../types";
+import Input from "../../../../components/Input/Input";
 export default function ItemsList() {
   const data = [
     {
@@ -47,7 +48,7 @@ export default function ItemsList() {
     console.log(item);
   }
   return (
-    <PopupWindowLayout w="95%" h="100%">
+    <PopupWindowLayout w="95%" h="100%" PopupWindowLayoutStyle="PopupWindowLayoutStyle">
       <>
         <Table data={data} columns={col} onRowClick={onRowClick} />
       </>

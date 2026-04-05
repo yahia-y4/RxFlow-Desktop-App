@@ -2,9 +2,9 @@
 
 import type { ReactNode } from "react"
 import "./PopupWindowLayout.css"
-export default function PopupWindowLayout({children , w,h}:{children:ReactNode,w?:string,h?:string}){
+export default function PopupWindowLayout({children ,w,h ,PopupWindowLayoutStyle }:{children:ReactNode,w?:string,h?:string,PopupWindowLayoutStyle?:string}) {
     return(
-        <div className="PopupWindowLayout" style={{width:w,height:h}} >
+        <div className={"PopupWindowLayout" + (PopupWindowLayoutStyle ? ` ${PopupWindowLayoutStyle}` : '')} style={{width:w,height:h} }  >
             {children}
         </div>
     )
