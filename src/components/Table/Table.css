@@ -12,12 +12,15 @@ table{
 thead th {
   padding: 0px;
   text-align: center;
-
+background-color:var(--TopTableColor);
+  border-bottom: 1px solid #ddd; 
+   border-left: 1px solid #ddd; 
   position: sticky;
+  padding: 5px;
 }
 
-th, td {
-  padding: 0px;
+td {
+  padding: 2px;
   text-align: center;
   border-bottom: 1px solid #ddd; 
   border-left: 1px solid #ddd; 
@@ -29,5 +32,5 @@ td:last-child {
 }
 
 tr:hover{
-  
+  background-color: var(--HoverTableColor);
 }
