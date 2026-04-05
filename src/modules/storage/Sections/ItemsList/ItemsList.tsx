@@ -1,8 +1,8 @@
 import "./ItemsList.css";
 import PopupWindowLayout from "../../../../layout/PopupWindowLayout/PopupWindowLayout";
 import Table from "../../../../components/Table/Table";
+import Search from "../../../../components/Search/Search";
 import type { Item } from "../../types";
-import Input from "../../../../components/Input/Input";
 export default function ItemsList() {
   const data = [
     {
@@ -50,6 +50,7 @@ export default function ItemsList() {
   return (
     <PopupWindowLayout w="95%" h="100%" PopupWindowLayoutStyle="PopupWindowLayoutStyle">
       <>
+      <Search placeholder="البحث عن دواء" w="80%" />
         <Table data={data} columns={col} onRowClick={onRowClick} />
       </>
     </PopupWindowLayout>
