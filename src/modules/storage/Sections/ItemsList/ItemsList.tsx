@@ -50,8 +50,8 @@ export default function ItemsList() {
   return (
     <PopupWindowLayout w="95%" h="100%" PopupWindowLayoutStyle="PopupWindowLayoutStyle">
       <>
-      <Search placeholder="البحث عن دواء" w="80%" />
-        <Table data={data} columns={col} onRowClick={onRowClick} />
+      <Search placeholder="البحث عن دواء" w="80%" m="10px" />
+        <Table data={data} columns={col} onRowClick={onRowClick}  w="95%"/>
       </>
     </PopupWindowLayout>
   );
