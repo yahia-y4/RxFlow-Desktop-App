@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: center;
   
+  
 }
 .input-div input{
     width: 100%;
@@ -24,7 +25,5 @@
 }
 
 .input-div label{
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--textColor);        
+   
 }
