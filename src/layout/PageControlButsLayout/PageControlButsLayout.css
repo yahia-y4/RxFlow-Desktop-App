@@ -3,11 +3,9 @@
     width: 100%;
     direction: rtl;
     margin-bottom: 5px;
-    border-bottom: 1px solid #ffffff4f;
     display: flex;
     height: 30px;
     width: fit-content;
-    border-radius: 10px;
     align-items: center;
     gap: 30px;
     padding: 1px 15px;
