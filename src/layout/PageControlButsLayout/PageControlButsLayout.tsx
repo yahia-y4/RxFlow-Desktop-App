@@ -1,12 +1,12 @@
 
 
-import type { ReactElement } from "react"
+import type { ReactNode } from "react"
 import "./PageControlButsLayout.css"
 
-export default function PageControlButsLayout({children}:{children:ReactElement}){
+export default function PageControlButsLayout({children}:{children:ReactNode}){
     return(
         <div className="ControlButs-div">
-            <div className="ControlButs">{children}</div>
+            {children}
        
         </div>
     )

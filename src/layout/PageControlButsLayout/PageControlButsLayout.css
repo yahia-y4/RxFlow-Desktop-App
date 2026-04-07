@@ -3,10 +3,7 @@
     width: 100%;
     direction: rtl;
     margin-bottom: 5px;
-}
-.ControlButs{
-    background-color: #09142F;
-    border: 1px solid #ffffff4f;
+    border-bottom: 1px solid #ffffff4f;
     display: flex;
     height: 30px;
     width: fit-content;
@@ -14,5 +11,13 @@
     align-items: center;
     gap: 30px;
     padding: 1px 15px;
+  align-self: self-start;
+}
 
+.ControlButs-div .onControlBut{
+    color: var(--textColor);
+  
+    cursor: pointer;
+
+   
 }
