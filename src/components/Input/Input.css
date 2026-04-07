@@ -16,7 +16,7 @@
     border-radius: 10px;
     outline: none;
     color: var(--textColor);
-    font-size: 16px;
+    font-size: 15px;
     direction: rtl;
 }   
 .input-div input:focus{
@@ -25,5 +25,5 @@
 }
 
 .input-div label{
-   
+    font-size: 15px;
 }
