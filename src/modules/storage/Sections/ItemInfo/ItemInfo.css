@@ -1,0 +1,19 @@
+
+.item-title{
+    margin-top: 5px;
+    border-bottom: 1px solid var(--borderColor);
+}
+
+.item-info-wins-div{
+    width: 95%;
+    height: 85%;
+    justify-content: center;
+    gap: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ItemInfoPopupWindowLayout{
+    align-items: center;
+    gap: 15px;
+}

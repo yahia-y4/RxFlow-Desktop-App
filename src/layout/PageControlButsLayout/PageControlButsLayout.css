@@ -9,13 +9,12 @@
     align-items: center;
     gap: 30px;
     padding: 1px 15px;
-  align-self: self-start;
+     align-self: self-start;
+     
 }
 
 .ControlButs-div .onControlBut{
     color: var(--textColor);
-  
     cursor: pointer;
 
-   
 }

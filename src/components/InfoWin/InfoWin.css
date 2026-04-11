@@ -1,6 +1,6 @@
 .InfoWin-div{
-    width: 250px;
-    height: 200px;
+height: 100px;
+width: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,6 +12,7 @@
     box-shadow: 1px 5px 10px #00000017;
     border-radius: 10px;
     transition: 0.1s ;
+   
 }
 .InfoWin-data{
     font-size: 18px;

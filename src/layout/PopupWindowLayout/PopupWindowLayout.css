@@ -5,6 +5,7 @@
     box-shadow: 5px 5px 10px #0000003f;
     display: flex;
     flex-direction: column;
+    transition: 0.2s;
       
 }
 
