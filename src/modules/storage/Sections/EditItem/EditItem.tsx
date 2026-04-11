@@ -1,8 +1,10 @@
-import "./AddIteme.css";
+import "./EditItem.css";
 import PopupWindowLayout from "../../../../layout/PopupWindowLayout/PopupWindowLayout";
 import Input from "../../../../components/Input/Input";
 import Select from "../../../../components/Select/Select";
 import Button from "../../../../components/Button/Button";
+export default function EditItem() {
+
 
 const options = [
   { value: "option1", label: "Option 1" },
@@ -10,14 +12,17 @@ const options = [
   { value: "option3", label: "Option 3" },
 ];
 
-export default function AddIteme() {
   return (
-    <PopupWindowLayout
-      w="30%"
-      h="100%"
-      PopupWindowLayoutStyle="PopupWindowLayoutStyle"
-    >
-      <div className="AddIteme-form">
+    <div className="edit-item-main-div">
+      <PopupWindowLayout
+        w="25%"
+        h="80%"
+        PopupWindowLayoutStyle="editItem-PopupWindowLayout"
+      >
+       
+
+
+ <div className="EditIteme-form">
         <Input label="الاسم التجاري" w="80%" />
         <Input label=" اسم الشركة" w="80%" />
         <Select options_v={options} label_v="الشكل الصيدلاني" w="80%" />
@@ -32,12 +37,16 @@ export default function AddIteme() {
         <Input label="الباركود" w="80%" />
         <Input type="date" label="تاريخ انتهاء الصلاحية" w="80%" />
 
-        <div className="AddIteme-buts">
-          <Button label="اضافة" />
+        <div className="EditIteme-buts">
+          <Button label="تعديل" />
           <Button label="محو" />
           <Button label="الغاء" />
         </div>
       </div>
-    </PopupWindowLayout>
+
+
+
+      </PopupWindowLayout>
+    </div>
   );
 }

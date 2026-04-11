@@ -3,7 +3,7 @@ import PageLayout from "../../../layout/PageLayout/PageLayout";
 import ItemsList from  "../Sections/ItemsList/ItemsList"
 import AddIteme from "../Sections/AddIteme/AddIteme";
 import ItemInfo from "../Sections/ItemInfo/ItemInfo";
-
+import EditItem from "../Sections/EditItem/EditItem";
 
 import FormatListBulletedAddIcon from '@mui/icons-material/FormatListBulletedAdd';
 import AssignmentAddIcon from '@mui/icons-material/AssignmentAdd';
@@ -19,6 +19,8 @@ export default function StoragePage() {
       <ItemInfo/>
       <ItemsList/>
       <AddIteme/>
+      <EditItem/>
+
 
 {/* ------- */}
     </PageLayout>
