@@ -1,19 +1,26 @@
+.PurchaseInvoice-table-div {
+    width: 95%;
+    height: 45%;
+    overflow: auto;
+     border: #ddd 1px solid; 
+}
+
+/* 
 .table-div{
   width: 100%;
-  border: #ddd 1px solid; 
 }
 
 table{
   width: 100%;
   border-collapse: collapse;
-
+  border: #ddd 1px solid;
   direction: rtl;
 }
 
 thead th {
   padding: 0px;
   text-align: center;
-background-color:var(--TopTableColor);
+  background-color:var(--TopTableColor);
   border-bottom: 1px solid #ddd; 
    border-left: 1px solid #ddd; 
   position: sticky;
@@ -22,7 +29,7 @@ background-color:var(--TopTableColor);
 }
 
 td {
-  padding: 2px;
+  padding-top: 2px;
   text-align: center;
   border-bottom: 1px solid #ddd; 
   border-left: 1px solid #ddd; 
@@ -35,4 +42,4 @@ td:last-child {
 
 tr:hover{
   background-color: var(--HoverTableColor);
-}
+} */

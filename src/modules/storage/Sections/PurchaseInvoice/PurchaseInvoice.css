@@ -1,0 +1,22 @@
+.PurchaseInvoice-style {
+    direction: rtl;
+    align-items: center;
+    gap: 10px;
+}
+
+.some-PurchaseInvoice-info-div {
+    width: 95%;
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.PurchaseInvoice-buts {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}

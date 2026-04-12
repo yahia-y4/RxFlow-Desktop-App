@@ -4,6 +4,7 @@ import ItemsList from  "../Sections/ItemsList/ItemsList"
 import AddIteme from "../Sections/AddIteme/AddIteme";
 import ItemInfo from "../Sections/ItemInfo/ItemInfo";
 import EditItem from "../Sections/EditItem/EditItem";
+import PurchaseInvoice from "../Sections/PurchaseInvoice/PurchaseInvoice";
 
 import FormatListBulletedAddIcon from '@mui/icons-material/FormatListBulletedAdd';
 import AssignmentAddIcon from '@mui/icons-material/AssignmentAdd';
@@ -15,11 +16,11 @@ export default function StoragePage() {
     
         </>}>
 {/* ------ */}
-
-      <ItemInfo/>
+       <PurchaseInvoice/>
+      {/* <ItemInfo/> */}
       <ItemsList/>
-      <AddIteme/>
-      <EditItem/>
+      {/* <AddIteme/> */}
+      {/* <EditItem/> */}
 
 
 {/* ------- */}
