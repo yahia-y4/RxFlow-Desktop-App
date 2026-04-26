@@ -5,7 +5,13 @@ import PageControlButsLayout from "../../../../layout/PageControlButsLayout/Page
 import EditSquareIcon from'@mui/icons-material/EditSquare';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+
+
+import { useContext } from "react";
+import {StorageContext}from "../../StoragePage/StoragePage";
 export default function ItemInfo() {
+  const {showItemInfo, setShowItemInfo} = useContext(StorageContext);
+  console.log(showItemInfo);
   return (
     <PopupWindowLayout
       w="50%"
