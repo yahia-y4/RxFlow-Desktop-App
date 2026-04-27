@@ -5,7 +5,11 @@ import Input from "../../../../components/Input/Input";
 import Button from "../../../../components/Button/Button";
 import InfoWin from "../../../../components/InfoWin/InfoWin";
 import PurchaseInvoiceTable from "./PurchaseInvoiceTable/PurchaseInvoiceTable";
+import { useContext } from "react";
+import {StorageContext} from "../../StorageContext" ;
 export default function PurchaseInvoice() {
+
+  const{setShowPurchaseInvoice} = useContext(StorageContext)! ;
   const options = [
     { value: "1", label: "مورد 1" },
     { value: "2", label: "مورد 2" },
@@ -26,7 +30,7 @@ export default function PurchaseInvoice() {
       
       <div className="PurchaseInvoice-buts">
         <Button label="حفظ" />
-        <Button label="الغاء" />
+        <Button onClick={()=>setShowPurchaseInvoice(false)} label="الغاء" />
       </div>
     </PopupWindowLayout>
   );

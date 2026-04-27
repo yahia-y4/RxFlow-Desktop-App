@@ -3,7 +3,8 @@ import PopupWindowLayout from "../../../../layout/PopupWindowLayout/PopupWindowL
 import Input from "../../../../components/Input/Input";
 import Select from "../../../../components/Select/Select";
 import Button from "../../../../components/Button/Button";
-
+import { useContext } from "react";
+import {StorageContext} from "../../StorageContext" ;
 const options = [
   { value: "option1", label: "Option 1" },
   { value: "option2", label: "Option 2" },
@@ -11,6 +12,7 @@ const options = [
 ];
 
 export default function AddIteme() {
+  const {setShowAddIteme} = useContext(StorageContext)! ;
   return (
     <PopupWindowLayout
       w="30%"
@@ -35,7 +37,7 @@ export default function AddIteme() {
         <div className="AddIteme-buts">
           <Button label="اضافة" />
           <Button label="محو" />
-          <Button label="الغاء" />
+          <Button onClick={()=>setShowAddIteme(false)} label="الغاء" />
         </div>
       </div>
     </PopupWindowLayout>

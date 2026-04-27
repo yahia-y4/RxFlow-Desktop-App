@@ -5,27 +5,37 @@ import AddIteme from "../Sections/AddIteme/AddIteme";
 import ItemInfo from "../Sections/ItemInfo/ItemInfo";
 import EditItem from "../Sections/EditItem/EditItem";
 import PurchaseInvoice from "../Sections/PurchaseInvoice/PurchaseInvoice";
-import { useState, createContext } from "react";
+import { useState } from "react";
 import FormatListBulletedAddIcon from "@mui/icons-material/FormatListBulletedAdd";
 import AssignmentAddIcon from "@mui/icons-material/AssignmentAdd";
-export const StorageContext = createContext({});
+import {StorageContext} from "../StorageContext" ;
 export default function StoragePage() {
-  const [showAddIteme, setShowAddIteme] = useState<boolean>(false);
-  const [showEditItem, setShowEditItem] = useState<boolean>(false);
-  const [showPurchaseInvoice, setShowPurchaseInvoice] =
-    useState<boolean>(false);
-  const [showItemInfo, setShowItemInfo] = useState<boolean>(false);
+  const [showAddIteme, setShowAddIteme] = useState(false);
+  const [showEditItem, setShowEditItem] = useState(false);
+  const [showPurchaseInvoice, setShowPurchaseInvoice] = useState(false);
+  const [showItemInfo, setShowItemInfo] = useState(false);
 
-  
+  console.log(showAddIteme);
 
   return (
     <PageLayout
       controlButs={
         <>
-          <div className="onControlBut">
+          <div
+            onClick={() => {
+              setShowAddIteme(!showAddIteme);
+            }}
+            className="onControlBut"
+          >
             <FormatListBulletedAddIcon style={{ fontSize: "30px" }} />
           </div>
-          <div className="onControlBut">
+          <div
+            onClick={() => {
+              setShowPurchaseInvoice(!showPurchaseInvoice);
+              setShowItemInfo(false) ;
+            }}
+            className="onControlBut"
+          >
             <AssignmentAddIcon style={{ fontSize: "30px" }} />
           </div>
         </>
@@ -44,11 +54,12 @@ export default function StoragePage() {
         }}
       >
         {/* ------ */}
-        <PurchaseInvoice />
-        <ItemInfo />
+        {showPurchaseInvoice && <PurchaseInvoice />}
+        {showItemInfo && !showPurchaseInvoice && <ItemInfo />}
+        {showEditItem && <EditItem />}
         <ItemsList />
-        <AddIteme />
-        <EditItem />
+        {showAddIteme && <AddIteme />}
+
         {/* ------- */}
       </StorageContext.Provider>
     </PageLayout>

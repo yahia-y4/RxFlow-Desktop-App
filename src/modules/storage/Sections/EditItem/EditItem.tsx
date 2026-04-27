@@ -3,8 +3,10 @@ import PopupWindowLayout from "../../../../layout/PopupWindowLayout/PopupWindowL
 import Input from "../../../../components/Input/Input";
 import Select from "../../../../components/Select/Select";
 import Button from "../../../../components/Button/Button";
+import { useContext } from "react";
+import {StorageContext} from "../../StorageContext" ;
 export default function EditItem() {
-
+const {setShowEditItem} = useContext(StorageContext)! ;
 
 const options = [
   { value: "option1", label: "Option 1" },
@@ -40,10 +42,9 @@ const options = [
         <div className="EditIteme-buts">
           <Button label="تعديل" />
           <Button label="محو" />
-          <Button label="الغاء" />
+          <Button onClick={()=>setShowEditItem(false)} label="الغاء" />
         </div>
       </div>
-
 
 
       </PopupWindowLayout>

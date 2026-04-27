@@ -8,10 +8,10 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 
 import { useContext } from "react";
-import {StorageContext}from "../../StoragePage/StoragePage";
+import {StorageContext}from "../../StorageContext";
 export default function ItemInfo() {
-  const {showItemInfo, setShowItemInfo} = useContext(StorageContext);
-  console.log(showItemInfo);
+  const {setShowItemInfo,setShowEditItem} = useContext(StorageContext)! ;
+
   return (
     <PopupWindowLayout
       w="50%"
@@ -21,9 +21,9 @@ export default function ItemInfo() {
       <>
         <h3 className="item-title">معلومات الدواء </h3>
         <PageControlButsLayout>
-          <div className="onControlBut"><EditSquareIcon style={{fontSize:"30px"}}/></div>
+          <div className="onControlBut" onClick={()=>setShowEditItem(true)}><EditSquareIcon style={{fontSize:"30px"}}/></div>
           <div className="onControlBut"><DeleteForeverIcon  style={{fontSize:"30px"}}/></div>
-          <div className="onControlBut"><HighlightOffIcon  style={{fontSize:"30px"}}/></div>
+          <div className="onControlBut"  onClick={()=>{setShowItemInfo(false)}}><HighlightOffIcon  style={{fontSize:"30px"}}/></div>
         </PageControlButsLayout>
         <div className="item-info-wins-div">
           <InfoWin title="ID" data="28" />

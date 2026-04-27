@@ -3,7 +3,13 @@ import PopupWindowLayout from "../../../../layout/PopupWindowLayout/PopupWindowL
 import Table from "../../../../components/Table/Table";
 import Search from "../../../../components/Search/Search";
 import type { Item } from "../../types";
+import { useContext } from "react";
+import { StorageContext } from "../../StorageContext" ;
 export default function ItemsList() {
+
+const {setShowItemInfo , showPurchaseInvoice} = useContext(StorageContext)! ;
+
+
   const data = [
     {
       name: "yahia",
@@ -45,7 +51,11 @@ export default function ItemsList() {
   ];
 
   function onRowClick(item: Item) {
-    console.log(item);
+    if(!showPurchaseInvoice) {
+      setShowItemInfo(true) ;
+      console.log(item);
+    }
+    
   }
   return (
     <PopupWindowLayout w="95%" h="100%" PopupWindowLayoutStyle="PopupWindowLayoutStyle">
