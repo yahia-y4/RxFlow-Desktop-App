@@ -5,8 +5,9 @@ import Search from "../../../../components/Search/Search";
 import type { Item } from "../../types";
 import { useContext } from "react";
 import { StorageContext } from "../../StorageContext" ;
+import { getAllItems } from "../../StorageAPI/GetAllItemsAPI";
 export default function ItemsList() {
-
+getAllItems()
 const {setShowItemInfo , showPurchaseInvoice} = useContext(StorageContext)! ;
 
 
