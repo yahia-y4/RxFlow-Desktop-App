@@ -5,9 +5,12 @@ import Search from "../../../../components/Search/Search";
 import type { Item } from "../../types";
 import { useContext } from "react";
 import { StorageContext } from "../../StorageContext" ;
-import { getAllItems } from "../../StorageAPI/GetAllItemsAPI";
+import { useSelector , useDispatch } from "react-redux";
+import type { RootState } from "../../../../store/store.ts" ;
 export default function ItemsList() {
-getAllItems()
+const items = useSelector((state:RootState) => state.item);
+const dispatch = useDispatch() ;
+console.log("items in items list", items);
 const {setShowItemInfo , showPurchaseInvoice} = useContext(StorageContext)! ;
 
 

@@ -1,8 +1,11 @@
 
 import { configureStore } from '@reduxjs/toolkit'
+import itemReducer from '../modules/storage/StorageSlice/ItemSlice.ts'
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    item: itemReducer,
+  },
 })
 
 
