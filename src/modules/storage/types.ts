@@ -1,56 +1,59 @@
 export type ID = string;
 
-
 export interface Item {
   id: ID;
 
   name: string;
   company: string;
 
-  form: string; 
+  form: string;
 
-  concent?: {
-    value: number;
-    unit: string; 
-  };
-
-  titer?: {
-    value: number;
-    unit: string; 
-  };
-
+  concent?: number;
+  concent_unit?: string;
   package_type?: string;
   quantity: number;
 
-  price: number; 
-  profit: number; 
+  price: number;
+  profit: number;
 
-  sell_price: number;   
+  sell_price: number;
 
-  code: string;        
+  code: string;
 
-  expiry_date?: string; 
+  expiry_date?: string;
 
   createdAt: string;
   updatedAt: string;
 }
 export interface ItemForm {
-     name?:string,
-    company?:string,
-    form?:string,
-    concent?: {
-    value: number;
-    unit: string; 
-  },
+  name?: string;
+  company?: string;
+  form?: string;
+  concent?: number;
+  concent_unit?: string;
 
-    titer?: {
-    value: number;
-    unit: string; 
-  };
-    package_type?:string,
-    quantity?:number,
-    price?:number,
-    profit?:number,
-    code?:string,
-    expiry_date?:string
+  titer?: number;
+  titer_unit?: string;
+
+  package_type?: string;
+  quantity?: number;
+  price?: number;
+  profit?: number;
+  code?: string;
+  expiry_date?: string;
 }
+
+export interface ItemPreview  {
+  id: ID;
+  name: string;
+  company: string;
+  form: string;
+  concent: number;
+  sell_price: number;
+  quantity: number;
+  expiry_date: string;
+};
+export type columnType<T> = {
+  label: string;
+  key: keyof T;
+};

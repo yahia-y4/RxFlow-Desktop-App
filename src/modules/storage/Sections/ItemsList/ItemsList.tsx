@@ -2,49 +2,44 @@ import "./ItemsList.css";
 import PopupWindowLayout from "../../../../layout/PopupWindowLayout/PopupWindowLayout";
 import Table from "../../../../components/Table/Table";
 import Search from "../../../../components/Search/Search";
-import type { Item } from "../../types";
-import { useContext } from "react";
+import type {Item ,columnType} from "../../types" ;
+import { useContext ,useEffect} from "react";
 import { StorageContext } from "../../StorageContext" ;
 import { useSelector , useDispatch } from "react-redux";
 import type { RootState } from "../../../../store/store.ts" ;
+
+
 export default function ItemsList() {
 const items = useSelector((state:RootState) => state.item);
 const dispatch = useDispatch() ;
 console.log("items in items list", items);
 const {setShowItemInfo , showPurchaseInvoice} = useContext(StorageContext)! ;
 
+useEffect(() => {
+  dispatch({type: "item/getItems"}) ;
+}, [dispatch]) ;
 
-  const data = [
+  const data :Item[]  = [
     {
-      name: "yahia",
-      company: "company",
-      form: "Shape 1",
-      concent: 50,
-      sell_price: 100,
-      quantity: 10,
-      expiry_date: "2023-12-31",
+       id: "1",
+       name: "دواء 1",
+       company: "شركة 1",
+       form: "شكل 1",
+       concent:10 ,
+       concent_unit: "mg/ml", 
+       package_type: "شكل",
+       quantity: 12,
+       price: 12,
+       profit: 1,
+       sell_price: 15,
+       code: "123456",
+       expiry_date: "2024-12-31",
+       createdAt: "2024-01-01T00:00:00Z",
+       updatedAt: "2024-01-01T00:00:00Z",
  
-    },
-    {
-      name: "yahia",
-      company: "Company A",
-      form: "Shape 1",
-      concent: 50,
-      sell_price: 100,
-      quantity: 10,
-      expiry_date: "2023-12-31",
-    },
-    {
-      name: "yahia",
-      company: "Company A",
-      form: "Shape 1",
-      concent: 50,
-      sell_price: 100,
-      quantity: 10,
-      expiry_date: "2023-12-31",
-    },
+    }
   ];
-  const col = [
+  const col : columnType<Item>[] = [
     { label: "الاسم", key: "name" },
     { label: "الشركة", key: "company" },
     { label: "الشكل", key: "form" },

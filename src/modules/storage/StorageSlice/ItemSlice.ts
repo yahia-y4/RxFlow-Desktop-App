@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+// import type { PayloadAction } from '@reduxjs/toolkit'
 import type { Item } from '../types'
 
 
@@ -22,8 +22,11 @@ export const itemSlice = createSlice({
     name: 'item',
     initialState,
     reducers: {
-        getItems: (state, action: PayloadAction<Item[]>) => {
-           console.log("getItems slice state", state);
+        getItems: () => {
+           async function fetchItems() {
+            console.log("fetching items...")
+           }
+              fetchItems()
 
         },
     }
