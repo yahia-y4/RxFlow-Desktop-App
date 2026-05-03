@@ -25,7 +25,7 @@ export async function getAllItems(){
             throw new Error("Failed to fetch items")
         }
         const data = await response.json()
-        console.log("Fetched items:", data)
+      
         return data
     } catch (error) {
         console.error("Error fetching items:", error)

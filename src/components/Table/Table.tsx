@@ -20,6 +20,7 @@ export default function Table<T extends { id: string }>({
   w,
   h,
 }: Props<T>) {
+console.log("Rendering Table with data:", data);
   return (
     <div className="table-div" style={{ width: w, height: h }}>
       <table>
