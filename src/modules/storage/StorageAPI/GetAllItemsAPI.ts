@@ -2,6 +2,7 @@
 import {URLRoutes} from "../../../routes/URLRoutes";
 import {getURL} from "../../account/AccountAPI/GetURL";
 import {getToken} from "../../account/AccountAPI/TokenAPI";
+import type {Item} from "../types";
 let url:string 
 try{
  url= getURL() + URLRoutes.items + "/getAll"
@@ -9,26 +10,24 @@ try{
     console.error("Error constructing URL:", error)
     throw error
 }
-
-export async function getAllItems(){
+export async function getAllItems(): Promise<Item[]> {
     const token = getToken()    
-    if(!token) return
-    try {
-        const response = await fetch(url,{
-            method:"GET",
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization":`Bearer ${token}`
-            }
-        })
-        if(!response.ok){
-            throw new Error("Failed to fetch items")
+    if (!token){
+        return []
+    } ; 
+
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         }
-        const data = await response.json()
-      
-        return data
-    } catch (error) {
-        console.error("Error fetching items:", error)
-        throw error
+    });
+
+    if (!response.ok) {
+        throw new Error("Failed to fetch items");
     }
+
+    const data = await response.json();
+    return data; 
 }

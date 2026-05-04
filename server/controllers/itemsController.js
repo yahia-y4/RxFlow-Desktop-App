@@ -14,11 +14,8 @@ const createItem = async (req, res) => {
     name,
     company,
     form,
-    form_unit,
     concent,
     concent_unit,
-    titer,
-    titer_unit,
     package_type,
     quantity,
     price,
@@ -33,11 +30,8 @@ const createItem = async (req, res) => {
       name,
       company,
       form,
-      form_unit,
       concent,
       concent_unit,
-      titer,
-      titer_unit,
       package_type,
       quantity,
       price,
@@ -93,13 +87,9 @@ const{
      name,
     company,
     form,
-    form_unit,
     concent,
     concent_unit,
-    titer,
-    titer_unit,
     package_type,
-    package_unit,
     quantity,
     price,
     profit,
@@ -113,13 +103,12 @@ const{
         name,
         company,
         form,
-        form_unit,
+      
         concent,
         concent_unit,
-        titer,
-        titer_unit,
+ 
         package_type,
-        package_unit,
+
         quantity,
         price,
         profit,
@@ -180,22 +169,8 @@ const getAllItems = async (req, res) => {
 
   try {
     const items = await Item.findAll({
-      where: { userId, isDeleted: false },
-      attributes: [
-        "id",
-        "name",
-        "company",
-        "form",
-        "price",
-        "profit",
-        "quantity",
-        "code",
-        "package_type",
-        "titer",
-        "titer_unit",
-        "concent",
-        "concent_unit"
-      ]
+      where: { userId, isDeleted: false }
+
     });
 
     const formattedItems = items.map(item => {
@@ -212,20 +187,12 @@ const getAllItems = async (req, res) => {
         quantity: item.quantity,
         code: item.code,
         package_type: item.package_type,
-
-        // 🔹 القيم مع الوحدات
         concent: item.concent
-          ? `${item.concent} ${item.concent_unit}`
-          : null,
-
-        titer: item.titer
-          ? `${item.titer} ${item.titer_unit}`
-          : null,
-
-        // 🔹 الأسعار
+          ? `${item.concent} ${item.concent_unit}` : null,
+        expiry_date: item.expiry_date,
         price_buy: price,
         profit: profit,
-        sell_price: sell_price.toFixed(2) // رقم مرتب
+        sell_price: sell_price 
       };
     });
 

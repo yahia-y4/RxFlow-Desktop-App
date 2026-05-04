@@ -8,10 +8,11 @@ import { StorageContext } from "../../StorageContext";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchItems } from "../../StorageSlice/ItemSlice";
 import type { RootState, AppDispatch } from "../../../../store/store.ts";
+import { formatDate } from "../../../../utils/formatDate.ts"
 
 export default function ItemsList() {
-  const items = useSelector((state: RootState) => state.item);
-  console.log("Items from Redux store:", items);
+  const items = useSelector((state: RootState) => state.item.items);
+
   const dispatch = useDispatch<AppDispatch>();
 
   const { setShowItemInfo, showPurchaseInvoice } = useContext(StorageContext)!;
@@ -20,25 +21,7 @@ export default function ItemsList() {
     dispatch(fetchItems());
   },[dispatch]);
 
-  const data: Item[] = [
-    {
-      id: "1",
-      name: "دواء 1",
-      company: "شركة 1",
-      form: "شكل 1",
-      concent: 10,
-      concent_unit: "mg/ml",
-      package_type: "شكل",
-      quantity: 12,
-      price: 12,
-      profit: 1,
-      sell_price: 15,
-      code: "123456",
-      expiry_date: "2024-12-31",
-      createdAt: "2024-01-01T00:00:00Z",
-      updatedAt: "2024-01-01T00:00:00Z",
-    },
-  ];
+
   const col: columnType<Item>[] = [
     { label: "الاسم", key: "name" },
     { label: "الشركة", key: "company" },
@@ -46,7 +29,7 @@ export default function ItemsList() {
     { label: "التركيز", key: "concent" },
     { label: "سعر البيع", key: "sell_price" },
     { label: " الكمية", key: "quantity" },
-    { label: "تاريخ الانتهاء", key: "expiry_date" },
+    { label: "تاريخ الانتهاء", key: "expiry_date" ,render: (value) => formatDate(String(value ?? ""))},
   ];
 
   function onRowClick(item: Item) {
@@ -63,7 +46,7 @@ export default function ItemsList() {
     >
       <>
         <Search placeholder="البحث عن دواء" w="80%" m="10px" />
-     <Table data={data} columns={col} onRowClick={onRowClick} w="95%" />
+     <Table data={items} columns={col} onRowClick={onRowClick} w="95%" />
       </>
     </PopupWindowLayout>
   );

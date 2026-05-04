@@ -12,16 +12,11 @@ export interface Item {
   concent_unit?: string;
   package_type?: string;
   quantity: number;
-
   price: number;
   profit: number;
-
   sell_price: number;
-
   code: string;
-
-  expiry_date?: string;
-
+  expiry_date: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -56,4 +51,5 @@ export interface ItemPreview  {
 export type columnType<T> = {
   label: string;
   key: keyof T;
+  render?: (value: T[keyof T], item: T) => React.ReactNode;
 };

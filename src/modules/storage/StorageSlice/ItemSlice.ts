@@ -6,7 +6,7 @@ interface ItemState {
   items: Item[];
 }
 const initialState: ItemState = {
-  items: [],
+  items:[],
 };
 
 export const fetchItems = createAsyncThunk<Item[]>("item/fetchItems", async () => {
