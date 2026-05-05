@@ -5,11 +5,17 @@ import PageControlButsLayout from "../../../../layout/PageControlButsLayout/Page
 import EditSquareIcon from'@mui/icons-material/EditSquare';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-
+import type { RootState} from "../../../../store/store.ts";
+import { useSelector } from "react-redux";
 
 import { useContext } from "react";
 import {StorageContext}from "../../StorageContext";
 export default function ItemInfo() {
+  const selectedItemID = useSelector((state: RootState) => state.item.selectedItemID);
+  const itemsById = useSelector((state: RootState) => state.item.itemsById);
+  const selectedItem = selectedItemID ? itemsById[selectedItemID] : null;
+  console.log("selected item id in ItemInfo:", selectedItemID);
+  console.log("selected item in ItemInfo:", selectedItem);
   const {setShowItemInfo,setShowEditItem} = useContext(StorageContext)! ;
 
   return (

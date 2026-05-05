@@ -3,10 +3,16 @@ import type { Item } from "../types";
 import { getAllItems } from "../StorageAPI/GetAllItemsAPI";
 
 interface ItemState {
-  items: Item[];
+  itemsById: Record<string, Item>;
+  itemsIDs: string[];
+  codeToItemID: Record<string, string>;
+  selectedItemID?: string;
 }
 const initialState: ItemState = {
-  items:[],
+  itemsById:{},
+  itemsIDs: [],
+  codeToItemID: {},
+  selectedItemID: undefined,
 };
 
 export const fetchItems = createAsyncThunk<Item[]>("item/fetchItems", async () => {
@@ -16,15 +22,24 @@ export const fetchItems = createAsyncThunk<Item[]>("item/fetchItems", async () =
 export const itemSlice = createSlice({
   name: "item",
   initialState,
-  reducers: {},
+  reducers: {
+    selectIDitem: (state, action) => {
+      state.selectedItemID = action.payload.id;
+    }
+  },
   extraReducers: (builder) => {
-
     builder.addCase(fetchItems.fulfilled, (state, action) => {
-    state.items = action.payload;
+      const items = action.payload;
+      for (const item of items) {
+        state.itemsById[item.id] = item;
+        state.itemsIDs.push(item.id);
+        state.codeToItemID[item.code] = item.id;
+
+     }
     
     });
   },
 });
 
-// export const {} = itemSlice.actions
+export const {selectIDitem} = itemSlice.actions
 export default itemSlice.reducer;

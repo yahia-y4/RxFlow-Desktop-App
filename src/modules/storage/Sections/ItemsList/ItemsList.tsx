@@ -3,15 +3,17 @@ import PopupWindowLayout from "../../../../layout/PopupWindowLayout/PopupWindowL
 import Table from "../../../../components/Table/Table";
 import Search from "../../../../components/Search/Search";
 import type { Item, columnType } from "../../types";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect,useMemo } from "react";
 import { StorageContext } from "../../StorageContext";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchItems } from "../../StorageSlice/ItemSlice";
+import { selectIDitem } from "../../StorageSlice/ItemSlice";
 import type { RootState, AppDispatch } from "../../../../store/store.ts";
 import { formatDate } from "../../../../utils/formatDate.ts"
 
 export default function ItemsList() {
-  const items = useSelector((state: RootState) => state.item.items);
+  const items = useSelector((state: RootState) => state.item.itemsById);
+  const itemsIDs = useSelector((state: RootState) => state.item.itemsIDs);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -20,7 +22,7 @@ export default function ItemsList() {
   useEffect(() => {
     dispatch(fetchItems());
   },[dispatch]);
-
+const data = useMemo( ()=>{ return itemsIDs.map(id => items[id]);},[items,itemsIDs]);
 
   const col: columnType<Item>[] = [
     { label: "الاسم", key: "name" },
@@ -32,12 +34,14 @@ export default function ItemsList() {
     { label: "تاريخ الانتهاء", key: "expiry_date" ,render: (value) => formatDate(String(value ?? ""))},
   ];
 
-  function onRowClick(item: Item) {
+    async function  onRowClick(item: Item) {
+        
     if (!showPurchaseInvoice) {
-      setShowItemInfo(true);
-      console.log(item);
+        dispatch(selectIDitem({id: item.id}));
+       setShowItemInfo(true);
     }
   }
+
   return (
     <PopupWindowLayout
       w="95%"
@@ -46,7 +50,7 @@ export default function ItemsList() {
     >
       <>
         <Search placeholder="البحث عن دواء" w="80%" m="10px" />
-     <Table data={items} columns={col} onRowClick={onRowClick} w="95%" />
+     <Table data={data} columns={col} onRowClick={onRowClick} w="95%" />
       </>
     </PopupWindowLayout>
   );
