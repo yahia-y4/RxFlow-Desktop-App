@@ -3,12 +3,14 @@ import type { Item } from "../types";
 import { getAllItems } from "../StorageAPI/GetAllItemsAPI";
 
 interface ItemState {
+  itemsArray: Item[];
   itemsById: Record<string, Item>;
   itemsIDs: string[];
   codeToItemID: Record<string, string>;
   selectedItemID?: string;
 }
 const initialState: ItemState = {
+  itemsArray: [],
   itemsById:{},
   itemsIDs: [],
   codeToItemID: {},
@@ -29,8 +31,8 @@ export const itemSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchItems.fulfilled, (state, action) => {
-      const items = action.payload;
-      for (const item of items) {
+      state.itemsArray = action.payload;
+      for (const item of state.itemsArray) {
         state.itemsById[item.id] = item;
         state.itemsIDs.push(item.id);
         state.codeToItemID[item.code] = item.id;
