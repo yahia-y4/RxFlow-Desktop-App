@@ -1,33 +1,43 @@
+import { URLRoutes } from "../../../routes/URLRoutes";
+import { getURL } from "../../account/AccountAPI/GetURL";
+import { getToken } from "../../account/AccountAPI/TokenAPI";
+import type { Item } from "../types";
 
-import {URLRoutes} from "../../../routes/URLRoutes";
-import {getURL} from "../../account/AccountAPI/GetURL";
-import {getToken} from "../../account/AccountAPI/TokenAPI";
-import type {Item} from "../types";
-let url:string 
-try{
- url= getURL() + URLRoutes.items + "/getAll"
-} catch (error) {
-    console.error("Error constructing URL:", error)
-    throw error
-}
-export async function getAllItems(): Promise<Item[]> {
-    const token = getToken()    
-    if (!token){
-        return []
-    } ; 
+
+export async function getAllItems() {
+  try {
+    const url = getURL() + URLRoutes.items + "/getAll";
+
+    const token = getToken();
+    if (!token) {
+      throw new Error("Token is missing");
+    }
 
     const response = await fetch(url, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-        }
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     if (!response.ok) {
-        throw new Error("Failed to fetch items");
+      throw new Error(`Server error: ${response.status}`);
     }
 
     const data = await response.json();
-    return data; 
+
+    return {
+      success: true,
+      data: data as Item[],
+      message: "Items fetched successfully",
+    };
+
+  } catch (error) {
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : "Unknown error",
+      data: [],
+    };
+  }
 }

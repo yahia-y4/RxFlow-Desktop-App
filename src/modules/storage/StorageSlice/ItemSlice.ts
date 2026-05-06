@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { Item } from "../types";
 import { getAllItems } from "../StorageAPI/GetAllItemsAPI";
+import {setError} from "../../../store/global/errorSlice.ts"
 
 interface ItemState {
   itemsArray: Item[];
@@ -17,8 +18,26 @@ const initialState: ItemState = {
   selectedItemID: undefined,
 };
 
-export const fetchItems = createAsyncThunk<Item[]>("item/fetchItems", async () => {
- return await getAllItems() ;
+
+
+export const fetchItems = createAsyncThunk<Item[]>("item/fetchItems", async (_, { dispatch, rejectWithValue }) => {
+try {
+  const res = await getAllItems() ;
+if (!res.success) {
+  console.error("Error fetching items:", res.message);
+   dispatch(setError(res.message || "Failed to fetch items"));
+  return rejectWithValue(res.message);
+
+}
+else{
+  return res.data || [];
+}
+}
+catch (error) {
+  console.error("Error fetching items:", error);
+ 
+  return rejectWithValue("Failed to fetch items");
+}
 });
 
 export const itemSlice = createSlice({
