@@ -2,19 +2,17 @@ export type ID = string;
 
 export interface Item {
   id: ID;
-
   name: string;
   company: string;
-
   form: string;
-
-  concent?: number;
+  concent?: string;
   concent_unit?: string;
   package_type?: string;
   quantity: number;
   price: number;
   profit: number;
   sell_price: number;
+  price_buy: number;
   code: string;
   expiry_date: string;
   createdAt: string;

@@ -16,6 +16,8 @@ width: 150px;
 }
 .InfoWin-data{
     font-size: 18px;
+    text-align: center;
+    direction: rtl;
 }
 
 .InfoWin-div:hover{

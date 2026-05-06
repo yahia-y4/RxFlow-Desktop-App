@@ -10,14 +10,17 @@ import { useSelector } from "react-redux";
 
 import { useContext } from "react";
 import {StorageContext}from "../../StorageContext";
+import { formatDate } from "../../../../utils/formatDate.ts";
 export default function ItemInfo() {
   const selectedItemID = useSelector((state: RootState) => state.item.selectedItemID);
   const itemsById = useSelector((state: RootState) => state.item.itemsById);
   const selectedItem = selectedItemID ? itemsById[selectedItemID] : null;
-  console.log("selected item id in ItemInfo:", selectedItemID);
+ 
   console.log("selected item in ItemInfo:", selectedItem);
   const {setShowItemInfo,setShowEditItem} = useContext(StorageContext)! ;
-
+if (!selectedItem) {
+  return null
+}
   return (
     <PopupWindowLayout
       w="50%"
@@ -32,16 +35,16 @@ export default function ItemInfo() {
           <div className="onControlBut"  onClick={()=>{setShowItemInfo(false)}}><HighlightOffIcon  style={{fontSize:"30px"}}/></div>
         </PageControlButsLayout>
         <div className="item-info-wins-div">
-          <InfoWin title="ID" data="28" />
-          <InfoWin title="باراسيتامول" data="الفا" />
-          <InfoWin title="الشكل" data="شراب" />
-          <InfoWin title="الكمية" data="30" />
-          <InfoWin title="سعر البيع" data="1.5" />
-          <InfoWin title="سعر الشراء" data="1" />
-          <InfoWin title="نسبة الربح" data="50%" />
-          <InfoWin title="التركيز" data="200 mg" />
-          <InfoWin title="الباركود" data="653747267524" />
-          <InfoWin title="تاريخ الانتهاء" data="2028/1/1" />
+          <InfoWin title="ID" data={selectedItem.id} />
+          <InfoWin title={selectedItem.name} data={selectedItem.company} />
+          <InfoWin title="الشكل" data={selectedItem.form}/>
+          <InfoWin title="الكمية" data={String(selectedItem.quantity)} />
+          <InfoWin title="سعر الشراء" data={String(selectedItem.price_buy) + "$"} />
+          <InfoWin title="سعر البيع" data={String(selectedItem.sell_price) + "$"} />
+          <InfoWin title="نسبة الربح" data={String(selectedItem.profit * 100) + "%"}  />
+          <InfoWin title="التركيز" data= {selectedItem.concent} />
+          <InfoWin title="الباركود" data={selectedItem.code} />
+          <InfoWin title="تاريخ الانتهاء" data={formatDate(selectedItem.expiry_date)} />
         </div>
       </>
     </PopupWindowLayout>
