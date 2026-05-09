@@ -24,10 +24,6 @@ export interface ItemForm {
   form?: string;
   concent?: number;
   concent_unit?: string;
-
-  titer?: number;
-  titer_unit?: string;
-
   package_type?: string;
   quantity?: number;
   price?: number;
