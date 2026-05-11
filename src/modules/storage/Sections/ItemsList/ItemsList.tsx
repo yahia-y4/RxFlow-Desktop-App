@@ -21,9 +21,11 @@ export default function ItemsList() {
     if (items.length === 0){
       console.log("fetching items...")
        dispatch(fetchItems());
+      
     }
-   
-  },[dispatch, items]);
+  
+  },[dispatch, items.length]);
+  console.log(items)
     
   const col: columnType<Item>[] = [
     { label: "الاسم", key: "name" },

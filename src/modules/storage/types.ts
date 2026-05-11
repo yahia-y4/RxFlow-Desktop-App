@@ -29,7 +29,7 @@ export interface ItemForm {
   price?: number;
   profit?: number;
   code?: string;
-  expiry_date?: string;
+  expiry_date?: Date | string;
 }
 
 export interface ItemPreview  {

@@ -23,14 +23,6 @@ concent_unit:{
     type: DataTypes.STRING,
     allowNull:false
 },
-titer:{
-    type:DataTypes.STRING,
-    allowNull:false
-},
-titer_unit:{
-    type:DataTypes.STRING,
-    allowNull:false
-},
 package_type:{
     type:DataTypes.STRING,
     allowNull:false
