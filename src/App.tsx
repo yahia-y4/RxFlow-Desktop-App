@@ -2,10 +2,12 @@ import "./App.css";
 import NavBar from "./components/NavBar/Navbar";
 import ErrorWin from "./components/ErrorWin/ErrorWin";
 import { RouteDefine } from "./routes/RouteDefinitions";
+import Loading from "./components/loading/loading";
 import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <div className="App">
+      <Loading/>
       <ErrorWin/>
       <NavBar />
       <div className="pages-space">
