@@ -6,7 +6,7 @@ import type { Item, columnType } from "../../types";
 import { useContext, useEffect } from "react";
 import { StorageContext } from "../../StorageContext";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchItems } from "../../StorageSlice/ItemSlice";
+import { fetchItems } from "../../StorageSlice/FetchItemsThunk.ts";
 import { selectIDitem } from "../../StorageSlice/ItemSlice";
 import type { RootState, AppDispatch } from "../../../../store/store.ts";
 import { formatDate } from "../../../../utils/formatDate.ts"
