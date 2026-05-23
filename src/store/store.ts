@@ -12,6 +12,9 @@ export const store = configureStore({
     loading:loadingRaducer,
     warning: warningReducer
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false,
+  })
 })
 
 

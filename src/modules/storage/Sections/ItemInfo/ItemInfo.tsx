@@ -5,21 +5,31 @@ import PageControlButsLayout from "../../../../layout/PageControlButsLayout/Page
 import EditSquareIcon from'@mui/icons-material/EditSquare';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import type { RootState} from "../../../../store/store.ts";
-import { useSelector } from "react-redux";
-
+import type { RootState,AppDispatch} from "../../../../store/store.ts";
+import { useSelector , useDispatch } from "react-redux";
+import { showWarning } from "../../../../store/global/WarningSlice.ts";
+import { DeleteItem } from "../../StorageSlice/DeleteItemThunk.ts";
 import { useContext } from "react";
 import {StorageContext}from "../../StorageContext";
 import { formatDate } from "../../../../utils/formatDate.ts";
 export default function ItemInfo() {
   const selectedItemID = useSelector((state: RootState) => state.item.selectedItemID);
   const itemsById = useSelector((state: RootState) => state.item.itemsById);
+  const dispatch = useDispatch<AppDispatch>();
   const selectedItem = selectedItemID ? itemsById[selectedItemID] : null;
  
   console.log("selected item in ItemInfo:", selectedItem);
   const {setShowItemInfo,setShowEditItem} = useContext(StorageContext)! ;
 if (!selectedItem) {
   return null
+}
+
+async function handleDeleteItem() {
+  if (!selectedItem) return;
+  dispatch(showWarning({
+    message: "هل انت متأكد من حذف هذا العنصر؟",
+    toExecute: () => dispatch(DeleteItem(selectedItem.id)),}));
+
 }
   return (
     <PopupWindowLayout
@@ -31,7 +41,7 @@ if (!selectedItem) {
         <h3 className="item-title">معلومات الدواء </h3>
         <PageControlButsLayout>
           <div className="onControlBut" onClick={()=>setShowEditItem(true)}><EditSquareIcon style={{fontSize:"30px"}}/></div>
-          <div className="onControlBut"><DeleteForeverIcon  style={{fontSize:"30px"}}/></div>
+          <div className="onControlBut"  onClick={()=>handleDeleteItem()}><DeleteForeverIcon  style={{fontSize:"30px"}}/></div>
           <div className="onControlBut"  onClick={()=>{setShowItemInfo(false)}}><HighlightOffIcon  style={{fontSize:"30px"}}/></div>
         </PageControlButsLayout>
         <div className="item-info-wins-div">
@@ -39,7 +49,7 @@ if (!selectedItem) {
           <InfoWin title={selectedItem.name} data={selectedItem.company} />
           <InfoWin title="الشكل" data={selectedItem.form}/>
           <InfoWin title="الكمية" data={String(selectedItem.quantity)} />
-          <InfoWin title="سعر الشراء" data={String(selectedItem.price_buy) + "$"} />
+          <InfoWin title="سعر الشراء" data={String(selectedItem.price) + "$"} />
           <InfoWin title="سعر البيع" data={String(selectedItem.sell_price) + "$"} />
           <InfoWin title="نسبة الربح" data={String(selectedItem.profit * 100) + "%"}  />
           <InfoWin title="التركيز" data= {selectedItem.concent} />

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { Item } from "../types";
 import { AddNewItem } from "./AddItemThunk.ts";
 import { fetchItems } from "./FetchItemsThunk.ts";
+import { DeleteItem } from "./DeleteItemThunk.ts";
 
 interface ItemState {
   itemsArray: Item[];
@@ -47,6 +48,16 @@ export const itemSlice = createSlice({
      
    
     });
+    builder.addCase(DeleteItem.fulfilled, (state, action) => {
+      const deletedItemID = action.payload.id;
+      console.log("deleted item id in slice:", deletedItemID);
+      state.itemsArray = state.itemsArray.filter(item => item.id !== deletedItemID);
+      delete state.itemsById[deletedItemID];
+      state.itemsIDs = state.itemsIDs.filter(id => id !== deletedItemID);
+      const deletedItemCode = action.payload.code;
+      delete state.codeToItemID[deletedItemCode];
+    });
+    
 },
 });
 
