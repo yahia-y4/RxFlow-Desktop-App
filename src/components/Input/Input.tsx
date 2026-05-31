@@ -3,7 +3,7 @@ import "./Input.css";
 type Props = {
     w?:string;
   label?: string;
-  value?: string | number |  undefined;
+  value?: string | number  | undefined ;
   placeholder?:string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onClick?: () => void;

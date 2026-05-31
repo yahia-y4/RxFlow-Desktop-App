@@ -15,7 +15,7 @@ export default function StoragePage() {
   const [showPurchaseInvoice, setShowPurchaseInvoice] = useState(false);
   const [showItemInfo, setShowItemInfo] = useState(false);
 
-  console.log(showAddIteme);
+
 
   return (
     <PageLayout

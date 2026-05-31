@@ -19,7 +19,6 @@ export default function ItemsList() {
 
   useEffect(() => {
     if (items.length === 0){
-      console.log("fetching items...")
        dispatch(fetchItems());
       
     }
@@ -31,7 +30,7 @@ export default function ItemsList() {
     { label: "الاسم", key: "name" },
     { label: "الشركة", key: "company" },
     { label: "الشكل", key: "form" },
-    { label: "التركيز", key: "concent" },
+    { label: "التركيز", key: "concent" ,render: (value, item) => value ? `${value}  ${item.concent_unit}` : "" },
     { label: "سعر البيع", key: "sell_price" },
     { label: " الكمية", key: "quantity" },
     { label: "تاريخ الانتهاء", key: "expiry_date" ,render: (value) => formatDate(String(value ?? ""))},

@@ -3,6 +3,7 @@ import type { Item } from "../types";
 import { AddNewItem } from "./AddItemThunk.ts";
 import { fetchItems } from "./FetchItemsThunk.ts";
 import { DeleteItem } from "./DeleteItemThunk.ts";
+import { EditItemT } from "./EditItemThunk.ts";
 
 interface ItemState {
   itemsArray: Item[];
@@ -56,6 +57,18 @@ export const itemSlice = createSlice({
       state.itemsIDs = state.itemsIDs.filter(id => id !== deletedItemID);
       const deletedItemCode = action.payload.code;
       delete state.codeToItemID[deletedItemCode];
+    });
+    builder.addCase(EditItemT.fulfilled, (state, action) => {
+      const editedItem = action.payload;
+      const itemID = editedItem.id;
+      state.itemsById[itemID] = editedItem;
+      const index = state.itemsArray.findIndex(item => item.id === itemID);
+      if (index !== -1) {
+        state.itemsArray[index] = editedItem;
+      }
+        state.codeToItemID[editedItem.code] = itemID;
+        
+
     });
     
 },

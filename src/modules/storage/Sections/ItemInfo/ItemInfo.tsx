@@ -18,7 +18,6 @@ export default function ItemInfo() {
   const dispatch = useDispatch<AppDispatch>();
   const selectedItem = selectedItemID ? itemsById[selectedItemID] : null;
  
-  console.log("selected item in ItemInfo:", selectedItem);
   const {setShowItemInfo,setShowEditItem} = useContext(StorageContext)! ;
 if (!selectedItem) {
   return null
@@ -54,7 +53,7 @@ async function handleDeleteItem() {
           <InfoWin title="نسبة الربح" data={String(selectedItem.profit * 100) + "%"}  />
           <InfoWin title="التركيز" data= {selectedItem.concent} />
           <InfoWin title="الباركود" data={selectedItem.code} />
-          <InfoWin title="تاريخ الانتهاء" data={formatDate(selectedItem.expiry_date)} />
+          <InfoWin title="تاريخ الانتهاء" data={formatDate(String(selectedItem.expiry_date))} />
         </div>
       </>
     </PopupWindowLayout>

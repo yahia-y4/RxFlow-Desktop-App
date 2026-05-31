@@ -3,7 +3,7 @@ import PopupWindowLayout from "../../../../layout/PopupWindowLayout/PopupWindowL
 import Input from "../../../../components/Input/Input";
 import Select from "../../../../components/Select/Select";
 import Button from "../../../../components/Button/Button";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { StorageContext } from "../../StorageContext";
 import type { ItemForm } from "../../types";
 import { AddNewItem } from "../../StorageSlice/AddItemThunk";
@@ -28,7 +28,7 @@ const itemInfo: ItemForm = {
   price: 0,
   profit: 0,
   code: "",
-  expiry_date:"",
+  expiry_date: "",
 };
 export default function AddIteme() {
   const [itemInfoState, setItemInfoState] = useState<ItemForm>(itemInfo);

@@ -104,7 +104,7 @@ const updateItem = async (req, res) => {
   } = req.body;
 
   try {
-    await Item.update(
+ await Item.update(
       {
         name,
         company,
@@ -124,7 +124,29 @@ const updateItem = async (req, res) => {
       },
       { where: { id: itemId, userId } },
     );
-    res.status(200).json({ message: "Item updated successfully" });
+    const sell_price = price + price * profit;
+const updetedItem = {
+       id: item.id,
+        name,
+        company,
+        form:form,
+        quantity:quantity,
+        code:code,
+        package_type:package_type,
+        concent:concent ,
+        concent_unit:concent_unit,
+        expiry_date:expiry_date,
+        createdAt: item.createdAt,
+        isDeleted: item.isDeleted,
+        isUpdated: item.isUpdated,
+        userId: item.userId,
+        updatedAt: new Date(),
+        price: price,
+        profit: profit,
+        sell_price: sell_price,
+
+}
+    res.status(200).json(updetedItem);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
@@ -193,8 +215,14 @@ const getAllItems = async (req, res) => {
         quantity: item.quantity,
         code: item.code,
         package_type: item.package_type,
-        concent: item.concent ? `${item.concent} ${item.concent_unit}` : null,
+        concent: item.concent ,
+        concent_unit: item.concent_unit,
         expiry_date: item.expiry_date,
+        createdAt: item.createdAt,
+        isDeleted: item.isDeleted,
+        isUpdated: item.isUpdated,
+        userId: item.userId,
+        updatedAt: item.updatedAt,
         price: price,
         profit: profit,
         sell_price: sell_price,
