@@ -49,7 +49,7 @@ async function handleDeleteItem() {
           <InfoWin title="الشكل" data={selectedItem.form}/>
           <InfoWin title="الكمية" data={String(selectedItem.quantity)} />
           <InfoWin title="سعر الشراء" data={String(selectedItem.price) + "$"} />
-          <InfoWin title="سعر البيع" data={String(selectedItem.sell_price) + "$"} />
+          <InfoWin title="سعر البيع" data={String((+selectedItem.price) + (+selectedItem.price) * (+selectedItem.profit)) + "$"} />
           <InfoWin title="نسبة الربح" data={String(selectedItem.profit * 100) + "%"}  />
           <InfoWin title="التركيز" data= {selectedItem.concent} />
           <InfoWin title="الباركود" data={selectedItem.code} />

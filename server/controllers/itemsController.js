@@ -3,6 +3,7 @@ const { Item, ItemSalesSummary } = require("../models");
 const { createSalesRecord } = require("./salesRecordsController");
 const { createNotice } = require("./noticeController.js");
 const { loadSettings } = require("./appSettingsConroller.js");
+const { Op } = require("sequelize"); 
 const createItem = async (req, res) => {
   const appSettingsData = loadSettings();
   const userId = req.user.id;
@@ -81,6 +82,34 @@ const createItem = async (req, res) => {
     res.status(500).json({ success: false, error: error.message || "Internal server error" });
   }
 };
+const searchItems = async (req, res) => {
+  const userId = req.user.id;
+  const searchValue = req.body.searchValue;
+
+  try {
+    const items = await Item.findAll({
+      where: {
+        userId,
+        isDeleted: false,
+        [Op.or]: [
+          { name:    { [Op.like]: `%${searchValue}%` } },
+          { company: { [Op.like]: `%${searchValue}%` } },
+          { code:    { [Op.like]: `%${searchValue}%` } },
+          { id:      { [Op.eq]: isNaN(searchValue) ? null : Number(searchValue) } },
+        ]
+      }
+    });
+
+    if (!items) {
+      return res.status(404).json({ success: false, error: "No items found" }); 
+    }
+
+    res.status(200).json(items);
+
+  } catch (error) {
+    res.status(500).json({ error: error.message || "Internal server error" });
+  }
+}
 
 const updateItem = async (req, res) => {
   const itemId = req.params.id;
@@ -109,12 +138,9 @@ const updateItem = async (req, res) => {
         name,
         company,
         form,
-
         concent,
         concent_unit,
-
         package_type,
-
         quantity,
         price,
         profit,
@@ -124,7 +150,7 @@ const updateItem = async (req, res) => {
       },
       { where: { id: itemId, userId } },
     );
-    const sell_price = price + price * profit;
+
 const updetedItem = {
        id: item.id,
         name,
@@ -142,9 +168,7 @@ const updetedItem = {
         userId: item.userId,
         updatedAt: new Date(),
         price: price,
-        profit: profit,
-        sell_price: sell_price,
-
+        profit: profit
 }
     res.status(200).json(updetedItem);
   } catch (error) {
@@ -201,35 +225,7 @@ const getAllItems = async (req, res) => {
       where: { userId, isDeleted: false },
     });
 
-    const formattedItems = items.map((item) => {
-      const price = Number(item.price) || 0;
-      const profit = Number(item.profit) || 0;
-
-      const sell_price = price + price * profit;
-
-      return {
-        id: item.id,
-        name: item.name,
-        company: item.company,
-        form: item.form,
-        quantity: item.quantity,
-        code: item.code,
-        package_type: item.package_type,
-        concent: item.concent ,
-        concent_unit: item.concent_unit,
-        expiry_date: item.expiry_date,
-        createdAt: item.createdAt,
-        isDeleted: item.isDeleted,
-        isUpdated: item.isUpdated,
-        userId: item.userId,
-        updatedAt: item.updatedAt,
-        price: price,
-        profit: profit,
-        sell_price: sell_price,
-      };
-    });
-
-    res.status(200).json(formattedItems);
+    res.status(200).json(items);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
@@ -338,4 +334,5 @@ module.exports = {
   getAllItems,
   getOneItem,
   sellItems,
+  searchItems
 };

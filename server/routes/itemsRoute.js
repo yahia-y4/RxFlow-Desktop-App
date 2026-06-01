@@ -11,5 +11,6 @@ itemsRouter.delete("/delete/:id", authMiddleware, itemsController.delItem);
 itemsRouter.get("/getOne/:id", authMiddleware, itemsController.getOneItem);
 itemsRouter.get("/getAll", authMiddleware, itemsController.getAllItems);
 itemsRouter.post("/sell", authMiddleware, itemsController.sellItems);
+itemsRouter.post("/search", authMiddleware, itemsController.searchItems);
 
 //----------------------
